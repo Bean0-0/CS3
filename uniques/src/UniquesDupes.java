@@ -7,7 +7,7 @@ public class UniquesDupes
         Set<String> uniques = new TreeSet<String>();
 
         String[] set = input.split(" ");
-        for (int x = 0; x < input.length(); x++)
+        for (int x = 0; x < set.length; x++)
         {
             uniques.add(set[x]);
         }
@@ -19,7 +19,7 @@ public class UniquesDupes
         Set<String> dupes = new TreeSet<String>();
 
         String[] set = input.split(" ");
-        for (int x = 0; x < input.length(); x++) {
+        for (int x = 0; x < set.length; x++) {
             if (!help.add(set[x])) {
                 dupes.add(set[x]);
             }
