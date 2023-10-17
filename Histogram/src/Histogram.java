@@ -12,6 +12,7 @@ public class Histogram
 	}
 
 	public Histogram(String sent) {
+		histogram = new TreeMap<>();
 		setSentence(sent);
 	}
 
