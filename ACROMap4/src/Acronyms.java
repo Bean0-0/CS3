@@ -17,7 +17,7 @@ public class Acronyms
 	public void putEntry(String entry)
 	{
 		String[] parts = entry.split("-");
-		acronymTable.put(parts[0], parts[1]);
+		acronymTable.put(parts[0].trim(), parts[1]);
 	}
 
 	public String convert(String sent)
@@ -25,8 +25,8 @@ public class Acronyms
 		Scanner chop = new Scanner(sent);
 		String output = "";
 		while (chop.hasNext()) {
-			String word = chop.next();
-			if (acronymTable.containsKey(word)) { //wtf why is this not working
+			String word = chop.next().replace(".","");
+			if (acronymTable.containsKey(word)) {
 				output += acronymTable.get(word) + " ";
 			} else {
 				output += word + " ";
