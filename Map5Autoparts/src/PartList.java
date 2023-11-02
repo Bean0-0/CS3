@@ -1,28 +1,42 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Scanner;
 import static java.lang.System.*;
 
+
 public class PartList
 {
 	private TreeMap<Part, Integer> partsMap;
-	
+
 	public PartList()
 	{
-
-
+		partsMap = new TreeMap<Part, Integer>();
 	}
-	
+
 	public PartList(String fileName)
 	{
 		this();
 		try
 		{
-			Scanner file = new Scanner(new File("lab08d.dat"));
-			//add code here to read from the file 
+			Scanner file = new Scanner(new File("partinfo.dat"));
+
+
+			while (file.hasNextLine()){
+				Part a = new Part(file.nextLine());
+				if (!partsMap.containsKey(a)){
+					partsMap.put(a, 1);
+				}
+				else partsMap.put(a, partsMap.get(a)+1);
+			}
+			//add code here to read from the file
 			//and add Parts to the map
+
+
+
+
 
 
 
@@ -45,12 +59,17 @@ public class PartList
 			//no code needed here
 		}
 	}
-	
-	public String toString()
-	{
-		String output="";
+
+	public String toString() {
+		String output = "";
 
 
+		for (Part x :
+				partsMap.keySet()) {
+
+
+			output += x + " - " + partsMap.get(x) + "\n";
+		}
 
 
 		return output;
