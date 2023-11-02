@@ -13,7 +13,7 @@ public class PartRunner
 {
 	public static void main(String[] args)
 	{
-		PartList prog = new PartList("partinfo.dat");
+		PartList prog = new PartList("src/partinfo");
 		out.println(prog);
 	}
 }
