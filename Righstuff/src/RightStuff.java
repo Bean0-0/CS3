@@ -1,65 +1,69 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RightStuff {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("//Users//ben//IdeaProjects//CS3//Righstuff//src//rightstuff.dat")); // Update file path
+    private static final double ACCEPTABLE_ERROR_PERCENT = 5.0;
+    private static final double PRECISION_RANGE_PERCENT = 10.0;
 
-        double numDataSets = scanner.nextDouble(); // Change to int
+    public static void main(String[] args) {
+        List<double[]> dataSets = new ArrayList<>();
 
-        for (int i = 0; i < numDataSets; i++) {
-            double acceptedValue = scanner.nextDouble();
-            int dataSize = (int)scanner.nextDouble();
-            double[] data = new double[dataSize - 1]; // Correct data array size
+        // Manually add the data sets
+        dataSets.add(new double[]{2.75, 2.68, 2.70, 2.71, 2.75, 2.75, 2.76});
+        dataSets.add(new double[]{3.14, 2.14, 4.14, 2.14, 4.14, 2.14, 4.14, 2.14, 4.14});
+        dataSets.add(new double[]{9.99, 6.99, 7.01, 7.11, 6.98, 7.00, 7.05, 7.09});
 
-            for (int j = 0; j < data.length; j++) {
-                data[j] = scanner.nextDouble();
-            }
+        for (double[] dataSet : dataSets) {
+            double acceptedValue = dataSet[0];
+            double[] dataValues = new double[dataSet.length - 1];
+            System.arraycopy(dataSet, 1, dataValues, 0, dataValues.length);
 
-            String result = "";
-
-            // Calculate accuracy
-            double average = calculateAverage(data);
-            double percentError = Math.abs(average - acceptedValue) / acceptedValue * 100;
-            if (percentError <= 5) {
-                result += "Accurate";
-            }
-
-            // Calculate precision
-            double range = calculateRange(data);
-            double precisionRatio = range / average * 100;
-            if (precisionRatio <= 10) {
-                result += " Precise";
-            }
-
-            // Print result
-            if (result.isEmpty()) {
-                System.out.println("Neither");
+            if (isAccurate(acceptedValue, dataValues) && isPrecise(dataValues)) {
+                System.out.println("Both");
+            } else if (isAccurate(acceptedValue, dataValues)) {
+                System.out.println("Accurate");
+            } else if (isPrecise(dataValues)) {
+                System.out.println("Precise");
             } else {
-                System.out.println(result.trim());
+                System.out.println("Neither");
             }
         }
-
-        scanner.close();
     }
 
-    private static double calculateAverage(double[] data) {
-        double sum = 0;
-        for (double value : data) {
+    private static boolean isAccurate(double acceptedValue, double[] dataValues) {
+        double average = calculateAverage(dataValues);
+        double absoluteError = Math.abs(acceptedValue - average);
+        double errorPercent = (absoluteError / acceptedValue) * 100.0;
+
+        return errorPercent <= ACCEPTABLE_ERROR_PERCENT;
+    }
+
+    private static boolean isPrecise(double[] dataValues) {
+        double range = calculateRange(dataValues);
+        double average = calculateAverage(dataValues);
+        double precisionRatio = (range / average) * 100.0;
+
+        return precisionRatio <= PRECISION_RANGE_PERCENT;
+    }
+
+    private static double calculateAverage(double[] dataValues) {
+        double sum = 0.0;
+        for (double value : dataValues) {
             sum += value;
         }
-        return sum / data.length;
+        return sum / dataValues.length;
     }
 
-    private static double calculateRange(double[] data) {
-        double min = Double.MAX_VALUE;
-        double max = Double.MIN_VALUE;
-        for (double value : data) {
-            min = Math.min(min, value);
-            max = Math.max(max, value);
+    private static double calculateRange(double[] dataValues) {
+        double minValue = Double.MAX_VALUE;
+        double maxValue = Double.MIN_VALUE;
+
+        for (double value : dataValues) {
+            minValue = Math.min(minValue, value);
+            maxValue = Math.max(maxValue, value);
         }
-        return max - min;
+
+        return maxValue - minValue;
     }
 }
