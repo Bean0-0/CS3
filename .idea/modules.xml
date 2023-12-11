@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ACROMap4/ACROMap4.iml" filepath="$PROJECT_DIR$/ACROMap4/ACROMap4.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/CS3.iml" filepath="$PROJECT_DIR$/.idea/CS3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Crossword/Crossword.iml" filepath="$PROJECT_DIR$/Crossword/Crossword.iml" />
       <module fileurl="file://$PROJECT_DIR$/Error/Error.iml" filepath="$PROJECT_DIR$/Error/Error.iml" />
       <module fileurl="file://$PROJECT_DIR$/Hashtable 1/Hashtable 1.iml" filepath="$PROJECT_DIR$/Hashtable 1/Hashtable 1.iml" />
       <module fileurl="file://$PROJECT_DIR$/Hashtable 2/Hashtable 2.iml" filepath="$PROJECT_DIR$/Hashtable 2/Hashtable 2.iml" />
@@ -20,6 +21,7 @@
       <module fileurl="file://$PROJECT_DIR$/Queue 2/Queue 2.iml" filepath="$PROJECT_DIR$/Queue 2/Queue 2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Queue 3/Queue 3.iml" filepath="$PROJECT_DIR$/Queue 3/Queue 3.iml" />
       <module fileurl="file://$PROJECT_DIR$/RelationshipsMap3/RelationshipsMap3.iml" filepath="$PROJECT_DIR$/RelationshipsMap3/RelationshipsMap3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Righstuff/Righstuff.iml" filepath="$PROJECT_DIR$/Righstuff/Righstuff.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scanner/Scanner.iml" filepath="$PROJECT_DIR$/Scanner/Scanner.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sort Analysis/Sort Analysis.iml" filepath="$PROJECT_DIR$/Sort Analysis/Sort Analysis.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sorts/Sorts.iml" filepath="$PROJECT_DIR$/Sorts/Sorts.iml" />
