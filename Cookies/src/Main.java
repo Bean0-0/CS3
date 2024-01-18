@@ -37,7 +37,7 @@ public class Main {
 
         char charArray2[] = lastName.toLowerCase().toCharArray();
         Arrays.sort(charArray2);
-        return new String(charArray).equals("ahknrs") || new String(charArray2).toString().equals("ahknrs");
+        return new String(charArray).equals("ahknrs") || new String(charArray2).equals("ahknrs");
     }
 
     private static void printShoppingList(int numOrders, String name) {
