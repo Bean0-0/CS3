@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ACROMap4/ACROMap4.iml" filepath="$PROJECT_DIR$/ACROMap4/ACROMap4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BinaryTree/BinaryTree.iml" filepath="$PROJECT_DIR$/BinaryTree/BinaryTree.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/CS3.iml" filepath="$PROJECT_DIR$/.idea/CS3.iml" />
       <module fileurl="file://$PROJECT_DIR$/Cookies/Cookies.iml" filepath="$PROJECT_DIR$/Cookies/Cookies.iml" />
       <module fileurl="file://$PROJECT_DIR$/Crossword/Crossword.iml" filepath="$PROJECT_DIR$/Crossword/Crossword.iml" />
