@@ -1,65 +1,49 @@
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.TreeMap;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
-public class Graph {
+class Graph {
+	private final Set<String> connections;
 
-	private TreeMap<String, List<String>> map; // Map to store connections
-	private boolean found; // Flag to indicate if a connection is found
+	public Graph(String connectionsLine) {
+		connections = new HashSet<>();
+		parseConnections(connectionsLine);
+	}
 
-	public Graph(String line) {
-		// Initialize the map
-		map = new TreeMap<>();
-		// Process the input line to create connections
-		String[] connections = line.split(" ");
-		for (int i = 0; i < connections.length; i += 2) {
-			addConnection(connections[i], connections[i + 1]);
-			addConnection(connections[i + 1], connections[i]); // Bi-directional
+	// Efficiently parse connections and create bidirectional relationships
+	private void parseConnections(String connectionsLine) {
+		String[] parts = connectionsLine.split(" ");
+		for (int i = 1; i < parts.length; i++) {
+			connections.add(parts[0] + parts[i]);
+			connections.add(parts[i] + parts[0]); // Bidirectional
 		}
 	}
 
-	public boolean contains(String letter) {
-		// Check if the letter exists as a key in the map
-		return map.containsKey(letter);
+	// Improved depth-first search (DFS) for robust connectivity checking
+	public boolean isConnected(String first, String second) {
+		if (!connections.contains(first) || !connections.contains(second)) {
+			return false; // Either node doesn't exist
+		}
+		Set<String> visited = new HashSet<>();
+		return dfs(first, second, visited);
 	}
 
-	public void check(String first, String second, String placesUsed) {
-		// Base case: If a direct connection exists, set found to true and return
-		if (map.get(first).contains(second)) {
-			found = true;
-			return;
+	private boolean dfs(String node, String target, Set<String> visited) {
+		if (visited.contains(node)) {
+			return false; // Avoid revisiting nodes for efficiency
 		}
-
-		// Recursive case: Explore connected nodes
-		for (String neighbor : map.get(first)) {
-			if (!placesUsed.contains(neighbor)) {
-				// Add neighbor to visited nodes
-				placesUsed += neighbor;
-				// Recursively check from the neighbor
-				check(neighbor, second, placesUsed);
-				// If found, no need to explore further
-				if (found) {
-					return;
+		if (node.equals(target)) {
+			return true; // Found the target
+		}
+		visited.add(node);
+		for (String neighbor : connections) {
+			if (neighbor.startsWith(node)) { // Efficiently check connections starting with current node
+				if (dfs(neighbor.substring(1), target, visited)) {
+					return true;
 				}
 			}
 		}
-	}
-
-	public String toString() {
-		// Format the map as a string representation of the graph
-		StringBuilder sb = new StringBuilder();
-		for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-			sb.append(entry.getKey()).append(" connects to: ");
-			sb.append(String.join(", ", entry.getValue())).append("\n");
-		}
-		return sb.toString();
-	}
-
-	private void addConnection(String node1, String node2) {
-		// Add a connection between two nodes
-		List<String> connections = map.getOrDefault(node1, new ArrayList<>());
-		connections.add(node2);
-		map.put(node1, connections);
+		return false;
 	}
 }
