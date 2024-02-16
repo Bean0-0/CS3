@@ -14,9 +14,9 @@ public static void main(String[] args) {
 	graph.addConnection("C", "D");
 	graph.addConnection("A", "D");
 
-	System.out.println("Is A connected to D? " + graph.isConnected("A", "D")); // Output: true
+	System.out.println("Is A connected to D? " + graph.isConnected("A", "D"));
 
 	int shortestPath = graph.findShortestPath("A", "D");
-	System.out.println("Shortest path from A to D: " + shortestPath); // Output: 2
+	System.out.println("Shortest path from A to D: " + shortestPath);
 	}
 }
