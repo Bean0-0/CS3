@@ -2,73 +2,95 @@ import java.util.*;
 
 public class ShortestPathGraph {
 
-	private final Map<String, List<String>> graph;
+	private Map<String, List<String>> graph;
 
-	public ShortestPathGraph(String[] connections) {
+	public ShortestPathGraph() {
 		this.graph = new HashMap<>();
-		for (String connection : connections) {
-			char[] nodes = connection.toCharArray();
-			String node1 = String.valueOf(nodes[0]);
-			String node2 = String.valueOf(nodes[1]);
-			List<String> neighbors = graph.getOrDefault(node1, new ArrayList<>());
-			neighbors.add(node2);
-			graph.put(node1, neighbors);
-			neighbors = graph.getOrDefault(node2, new ArrayList<>());
-			neighbors.add(node1); // Bi-directional connection
-			graph.put(node2, neighbors);
+	}
+
+	public void addConnection(String start, String end) {
+		List<String> connections = graph.getOrDefault(start, new ArrayList<>());
+		connections.add(end);
+		graph.put(start, connections);
+
+		// Ensure bidirectional connection (if not already present):
+		List<String> reverseConnections = graph.getOrDefault(end, new ArrayList<>());
+		if (!reverseConnections.contains(start)) {
+			reverseConnections.add(start);
+			graph.put(end, reverseConnections);
 		}
 	}
 
-	public boolean isConnected(String first, String second) {
-		if (!graph.containsKey(first) || !graph.containsKey(second)) {
+	public boolean isConnected(String start, String end) {
+		if (!graph.containsKey(start)) {
 			return false;
 		}
 
-		return findShortestPath(first, second) != null;
-	}
-
-	public List<String> findShortestPath(String first, String second) {
-		if (!graph.containsKey(first) || !graph.containsKey(second)) {
-			return null;
-		}
-
+		// Use an efficient Breadth-First Search (BFS) for path existence:
 		Queue<String> queue = new LinkedList<>();
-		Map<String, String> prev = new HashMap<>(); // Track parent nodes for backtracking
+		queue.add(start);
 		Set<String> visited = new HashSet<>();
-
-		queue.add(first);
-		prev.put(first, null); // Mark starting node as null
-		visited.add(first);
+		visited.add(start);
 
 		while (!queue.isEmpty()) {
 			String current = queue.poll();
-			if (current.equals(second)) {
-				break;
+			if (current.equals(end)) {
+				return true;
 			}
 
-			for (String neighbor : graph.get(current)) {
-				if (!visited.contains(neighbor)) {
-					queue.add(neighbor);
-					prev.put(neighbor, current);
-					visited.add(neighbor);
+			List<String> neighbors = graph.get(current);
+			if (neighbors != null) {
+				for (String neighbor : neighbors) {
+					if (!visited.contains(neighbor)) {
+						queue.add(neighbor);
+						visited.add(neighbor);
+					}
 				}
 			}
 		}
 
-		if (!prev.containsKey(second)) { // No path found
-			return null;
-		}
-
-		List<String> path = new ArrayList<>();
-		path.add(second);
-		String node = prev.get(second);
-		while (node != null) {
-			path.add(0, node); // Add nodes in reverse order to get the actual path
-			node = prev.get(node);
-		}
-
-		return path;
+		return false;
 	}
 
+	public int findShortestPath(String start, String end) {
+		if (!graph.containsKey(start) || !graph.containsKey(end)) {
+			return -1; // Indicate nodes not in the graph
+		}
 
+		// Use Dijkstra's algorithm for efficient shortest path:
+		Map<String, Integer> distances = new HashMap<>();
+		for (String node : graph.keySet()) {
+			distances.put(node, Integer.MAX_VALUE);
+		}
+		distances.put(start, 0); // Start node distance is 0
+
+		Queue<String> pq = new PriorityQueue<>((v1, v2) -> distances.get(v1) - distances.get(v2));
+		pq.add(start);
+
+		Set<String> visited = new HashSet<>();
+		while (!pq.isEmpty()) {
+			String current = pq.poll();
+			if (visited.contains(current)) {
+				continue; // Skip already visited nodes
+			}
+			visited.add(current);
+
+			if (current.equals(end)) {
+				return distances.get(current); // Found shortest path
+			}
+
+			List<String> neighbors = graph.get(current);
+			if (neighbors != null) {
+				for (String neighbor : neighbors) {
+					int newDistance = distances.get(current) + 1; // Assume unit edge weights
+					if (newDistance < distances.get(neighbor)) {
+						distances.put(neighbor, newDistance);
+						pq.add(neighbor);
+					}
+				}
+			}
+		}
+
+		return -1; // No path found
+	}
 }
