@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import static java.lang.System.*;
 
-public class ShortestPathGraphRunner
-{
+public class ShortestPathGraphRunner{
 public static void main(String[] args) {
 	ShortestPathGraph graph = new ShortestPathGraph();
 
