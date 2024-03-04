@@ -13,7 +13,7 @@ public class MazeSolver {
     public static void main(String[] args) {
         MazeSolver solver = new MazeSolver();
         try {
-            solver.solveMaze("C:\\Users\\benja\\IdeaProjects\\CS3\\Graphs 4\\src\\maze_short-1.dat");
+            solver.solveMaze("C:\\Users\\benja\\IdeaProjects\\CS3\\Graphs 3\\src\\maze_short-1.dat");
         } catch (FileNotFoundException e) {
             System.out.println("Error: Maze file not found.");
         }
