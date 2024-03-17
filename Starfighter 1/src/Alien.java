@@ -1,7 +1,3 @@
-//(c) A+ Computer Science
-//www.apluscompsci.com
-//Name -
-
 import java.io.File;
 import java.net.URL;
 import java.awt.Color;
