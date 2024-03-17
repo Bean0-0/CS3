@@ -54,14 +54,24 @@ public class Ship extends MovingThing
 
 	public void move(String direction)
 	{
-		if(direction.equals("LEFT"))
-			setX(getX() - getSpeed());
-		if(direction.equals("RIGHT"))
-			setX(getX() + getSpeed());
-		if(direction.equals("UP"))
-			setY(getY() - getSpeed());
-		if(direction.equals("DOWN"))
-			setY(getY() + getSpeed());
+		int speed = getSpeed();
+
+		if(direction.equals("LEFT") && getX() - speed >= 0)
+		{
+			setX(getX() - speed);
+		}
+		if(direction.equals("RIGHT") && getX() + getWidth() + speed <= StarFighter.getWidthConstant()) // 800 is the width of the projected area
+		{
+			setX(getX() + speed);
+		}
+		if(direction.equals("UP") && getY() - speed >= 0)
+		{
+			setY(getY() - speed);
+		}
+		if(direction.equals("DOWN") && getY() + getHeight() + speed <= StarFighter.getHeightConstant()) // 600 is the height of the projected area
+		{
+			setY(getY() + speed);
+		}
 	}
 
 	public void draw( Graphics window )

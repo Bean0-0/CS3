@@ -21,6 +21,13 @@ public class StarFighter extends JFrame
 		setVisible(true);
 	}
 
+	public static int getWidthConstant() {
+		return WIDTH;
+	}
+
+	public static int getHeightConstant() {
+		return HEIGHT;
+	}
 	public static void main( String args[] )
 	{
 		StarFighter run = new StarFighter();
