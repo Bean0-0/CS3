@@ -16,11 +16,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Alien alienOne;
 	private Alien alienTwo;
 
-	/* uncomment once you are ready for this part
-	 *
-   private AlienHorde horde;
+	private Ammo ammo;
+
+	//uncomment once you are ready for this part
+	private AlienHorde horde;
 	private Bullets shots;
-	*/
+
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -48,6 +49,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
    {
 	   paint(window);
    }
+	public boolean checkCollision(MovingThing obj1, MovingThing obj2) {
+		return (obj1.getX() < obj2.getX() + obj2.getWidth() &&
+				obj1.getX() + obj1.getWidth() > obj2.getX() &&
+				obj1.getY() < obj2.getY() + obj2.getHeight() &&
+				obj1.getY() + obj1.getHeight() > obj2.getY());
+	}
 
 	public void paint( Graphics window )
 	{
@@ -86,6 +93,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			ship.move("DOWN");
 		}
+		if (keys[4] = true) {
+			Ammo bullet = new Ammo(ship.getX() + ship.getWidth() / 2, ship.getY(), 5);
+			shots.add(bullet);
+		}
 
 		// Move the aliens in a fixed direction
 		/**
@@ -99,9 +110,27 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		alienTwo.draw(graphToBack);
 
 
+
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
+		/*for (int i = 0; i < shots.getList().size(); i++) {
+			Ammo bullet = shots.getList().get(i);
 
+			if (checkCollision(bullet, ship)) {
+				// handle ship being hit by a bullet
+				// for example, end the game or reduce player's lives
+			}
 
+			for (Alien alien : horde.getList()) {
+				if (checkCollision(bullet, alien)) {
+					// handle alien being hit by a bullet
+					// for example, remove the alien and the bullet
+					horde.getList().remove(alien);
+					shots.getList().remove(bullet);
+					break;
+				}
+			}
+		}
+		*/
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 

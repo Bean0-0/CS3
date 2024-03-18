@@ -1,5 +1,7 @@
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import java.awt.Component;
+import java.awt.*;
+import java.io.IOException;
 
 public class StarFighter extends JFrame
 {
@@ -19,6 +21,13 @@ public class StarFighter extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setVisible(true);
+
+		try {
+			Image icon = ImageIO.read(getClass().getResource("/images/ship.jpg"));
+			setIconImage(icon);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static int getWidthConstant() {

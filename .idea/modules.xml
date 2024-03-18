@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ACROMap4/ACROMap4.iml" filepath="$PROJECT_DIR$/ACROMap4/ACROMap4.iml" />
       <module fileurl="file://$PROJECT_DIR$/BinaryTree/BinaryTree.iml" filepath="$PROJECT_DIR$/BinaryTree/BinaryTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BlackJack/BlackJack.iml" filepath="$PROJECT_DIR$/BlackJack/BlackJack.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/CS3.iml" filepath="$PROJECT_DIR$/.idea/CS3.iml" />
       <module fileurl="file://$PROJECT_DIR$/Cookies/Cookies.iml" filepath="$PROJECT_DIR$/Cookies/Cookies.iml" />
       <module fileurl="file://$PROJECT_DIR$/Crossword/Crossword.iml" filepath="$PROJECT_DIR$/Crossword/Crossword.iml" />
@@ -47,7 +48,7 @@
       <module fileurl="file://$PROJECT_DIR$/Sorts/Sorts.iml" filepath="$PROJECT_DIR$/Sorts/Sorts.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpantoEnglish/SpantoEnglish.iml" filepath="$PROJECT_DIR$/SpantoEnglish/SpantoEnglish.iml" />
       <module fileurl="file://$PROJECT_DIR$/Stack 1/Stack 1.iml" filepath="$PROJECT_DIR$/Stack 1/Stack 1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Starfighter 1/Starfighter 1.iml" filepath="$PROJECT_DIR$/Starfighter 1/Starfighter 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Starfighter/Starfighter.iml" filepath="$PROJECT_DIR$/Starfighter/Starfighter.iml" />
       <module fileurl="file://$PROJECT_DIR$/Susbrownie/Susbrownie.iml" filepath="$PROJECT_DIR$/Susbrownie/Susbrownie.iml" />
       <module fileurl="file://$PROJECT_DIR$/Syntax Checker/Syntax Checker.iml" filepath="$PROJECT_DIR$/Syntax Checker/Syntax Checker.iml" />
       <module fileurl="file://$PROJECT_DIR$/iterator 1 removeit/iterator 1 removeit.iml" filepath="$PROJECT_DIR$/iterator 1 removeit/iterator 1 removeit.iml" />
