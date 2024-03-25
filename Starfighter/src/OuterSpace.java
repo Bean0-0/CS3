@@ -19,8 +19,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ammo ammo;
 
 	//uncomment once you are ready for this part
-	private AlienHorde horde;
-	private Bullets shots;
+	//private AlienHorde horde;
+	//private Bullets shots;
 
 
 	private boolean[] keys;
@@ -93,10 +93,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			ship.move("DOWN");
 		}
-		if (keys[4] = true) {
+		/*if (keys[4] = true) {
 			Ammo bullet = new Ammo(ship.getX() + ship.getWidth() / 2, ship.getY(), 5);
 			shots.add(bullet);
-		}
+		}*/
 
 		// Move the aliens in a fixed direction
 		/**
